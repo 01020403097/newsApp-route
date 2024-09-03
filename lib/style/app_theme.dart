@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -21,11 +20,11 @@ class AppTheme {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(50),
-                bottomLeft: Radius.circular(50))),
+                bottomRight: Radius.circular(35),
+                bottomLeft: Radius.circular(35))),
         centerTitle: true,
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         titleLarge:
             TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: white),
       ),
