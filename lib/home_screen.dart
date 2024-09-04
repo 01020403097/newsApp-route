@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onDrawerItemSelected(DrawerItem drawerItem) {
     selectedDrawerItem = drawerItem;
-    selectedCategory=null;
+    selectedCategory = null;
     setState(() {});
     Navigator.of(context).pop();
   }

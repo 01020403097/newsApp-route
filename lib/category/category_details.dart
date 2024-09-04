@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_route/api_service/api_service.dart';
+import 'package:news_app_route/tabs/sources_tabs.dart';
 import 'package:news_app_route/tabs/tab_item.dart';
+import 'package:news_app_route/widgets/error_indicator.dart';
+import 'package:news_app_route/widgets/loading_indicator.dart';
 
 import '../news/news_item.dart';
 
@@ -14,35 +18,26 @@ class CategoryDetails extends StatefulWidget {
 
 class _CategoryDetailsState extends State<CategoryDetails> {
 
-  int selectedTabIndex=0;
-  final sources = List.generate(10, (index) => 'Source $index',);
+
   @override
   Widget build(BuildContext context) {
 
 
-    return Column(
-      children: [
-        DefaultTabController(
-          length: sources.length,
-          child: TabBar(
-            padding: EdgeInsets.zero,
-            tabAlignment: TabAlignment.start,
-            isScrollable: true,
-            indicatorColor: Colors.transparent,
-            dividerColor: Colors.transparent,
-           onTap: (index) =>setState(() {
-             selectedTabIndex=index;
-           }) ,
-            tabs: sources.map(
-                (source) => TabItem(isSelected: sources.indexOf(source)==selectedTabIndex, source: source)).toList(),
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 10,
-              itemBuilder: (context, index) =>NewsItem()),
-        )
-      ],
+
+    return FutureBuilder(
+      future:APIService.getSources(widget.categoryId),
+      builder: (context,snapshot) {
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return const LoadingIndicator();
+        }else if (snapshot.hasError|| snapshot.data?.status!='ok'){
+          return const ErrorIndicator();
+        }else{
+          final sources =snapshot.data?.sources??[];
+          return SourcesTabs(sources);
+
+        }
+
+      }
     );
   }
 }

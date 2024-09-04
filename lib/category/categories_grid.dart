@@ -11,24 +11,24 @@ class CategoriesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<CategoryModel>categories = [
-      const CategoryModel(
+       CategoryModel(
         id: 'sports',
           name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
       const CategoryModel(
-          id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
+          id: 'business',
+          name: 'Business', imageName: 'bussines', color: AppTheme.brown),
       const CategoryModel(
-          id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
+          id: 'general',
+          name: 'General', imageName: 'environment', color: AppTheme.blue),
       const CategoryModel(
-          id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
+          id: 'science',
+          name: 'science', imageName: 'science', color: AppTheme.lightBrown),
       const CategoryModel(
-          id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
+          id: 'technology',
+          name: 'Technology', imageName: 'ai', color:AppTheme.primary),
       const CategoryModel(
-          id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
+          id: 'health',
+          name: 'Health', imageName: 'health', color: AppTheme.pink),
 
     ];
     return Padding(
