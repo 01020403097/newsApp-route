@@ -5,6 +5,8 @@ import 'package:news_app_route/category/category_model.dart';
 import 'package:news_app_route/drawer/home_drawer.dart';
 import 'package:news_app_route/settings/settings_tab.dart';
 import 'package:news_app_route/style/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -29,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           omItemSelection: onDrawerItemSelected,
         ),
         appBar: AppBar(
-          title: const Text('News App'),
+          title:  Text(AppLocalizations.of(context)!.newsApp),
         ),
         body: selectedCategory != null
             ? CategoryDetails(selectedCategory!.id)

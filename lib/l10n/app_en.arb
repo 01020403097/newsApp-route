@@ -1,0 +1,18 @@
+{
+  "language": "Language",
+  "newsApp": "News App",
+  "newsAppDrawer": "News App !",
+  "categories": "Categories",
+  "settings": "Settings",
+
+  "sports": "Sports",
+  "business": "Business",
+  "general": "General",
+  "science": "Science",
+  "technology": "Technology",
+  "health": "Health",
+  "pickYourCategoryOfInterest": "Pick your category of interest",
+  "viewFullArticle": "view full Article",
+  "search": "Search ..."
+
+}

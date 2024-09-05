@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app_route/category/category_items.dart';
 import 'package:news_app_route/category/category_model.dart';
 import 'package:news_app_route/style/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class CategoriesGrid extends StatelessWidget {
   const CategoriesGrid({super.key, required this.onCategorySelected});
@@ -13,22 +15,22 @@ class CategoriesGrid extends StatelessWidget {
     List<CategoryModel>categories = [
        CategoryModel(
         id: 'sports',
-          name: 'Sports', imageName: 'ball', color: Color(0xFFC91c22)),
-      const CategoryModel(
+          name: AppLocalizations.of(context)!.sports, imageName: 'ball', color: Color(0xFFC91c22)),
+       CategoryModel(
           id: 'business',
-          name: 'Business', imageName: 'bussines', color: AppTheme.brown),
-      const CategoryModel(
+          name: AppLocalizations.of(context)!.business, imageName: 'bussines', color: AppTheme.brown),
+       CategoryModel(
           id: 'general',
-          name: 'General', imageName: 'environment', color: AppTheme.blue),
-      const CategoryModel(
+          name: AppLocalizations.of(context)!.general, imageName: 'environment', color: AppTheme.blue),
+       CategoryModel(
           id: 'science',
-          name: 'science', imageName: 'science', color: AppTheme.lightBrown),
-      const CategoryModel(
+          name: AppLocalizations.of(context)!.science, imageName: 'science', color: AppTheme.lightBrown),
+       CategoryModel(
           id: 'technology',
-          name: 'Technology', imageName: 'ai', color:AppTheme.primary),
-      const CategoryModel(
+          name: AppLocalizations.of(context)!.technology, imageName: 'ai', color:AppTheme.primary),
+       CategoryModel(
           id: 'health',
-          name: 'Health', imageName: 'health', color: AppTheme.pink),
+          name: AppLocalizations.of(context)!.health, imageName: 'health', color: AppTheme.pink),
 
     ];
     return Padding(
@@ -38,7 +40,7 @@ class CategoriesGrid extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsetsDirectional.symmetric(vertical: 24),
-            child: Text('Pick your category of interest', style: Theme
+            child: Text(AppLocalizations.of(context)!.pickYourCategoryOfInterest, style: Theme
                 .of(context)
                 .textTheme
                 .titleLarge!

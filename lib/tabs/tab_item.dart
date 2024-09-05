@@ -9,24 +9,33 @@ class TabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double horizontalPadding = screenSize.width * 0.03;
+    final double verticalPadding = screenSize.height * 0.01;
+    final double marginVertical = screenSize.height * 0.01;
+    final double borderRadius = screenSize.width * 0.06;
+    final double borderWidth = screenSize.width * 0.005;
+
     return Container(
-      padding: const EdgeInsetsDirectional.symmetric(vertical: 6,horizontal: 10),
-      margin: const EdgeInsetsDirectional.symmetric(vertical: 8),
+      padding: EdgeInsetsDirectional.symmetric(
+        vertical: verticalPadding,
+        horizontal: horizontalPadding,
+      ),
+      margin: EdgeInsetsDirectional.symmetric(vertical: marginVertical),
       decoration: BoxDecoration(
         color: isSelected ? AppTheme.primary : Colors.transparent,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(
-            25,
-          ),
+        borderRadius: BorderRadius.circular(borderRadius),
+        border: Border.all(
+          color: AppTheme.primary,
+          width: borderWidth,
         ),
-        border: Border.all(color: AppTheme.primary, width: 2),
       ),
       child: Text(
         source,
-        style: Theme.of(context)
-            .textTheme
-            .titleSmall
-            ?.copyWith(color: isSelected ? AppTheme.white : AppTheme.primary),
+        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          color: isSelected ? AppTheme.white : AppTheme.primary,
+          fontSize: screenSize.width * 0.04,
+        ),
       ),
     );
   }

@@ -3,7 +3,8 @@ import 'package:news_app_route/api_service/sourceResponse_model.dart';
 import 'package:news_app_route/news/news_list.dart';
 import 'package:news_app_route/style/app_theme.dart';
 import 'package:news_app_route/tabs/tab_item.dart';
-import '../news/news_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SourcesTabs extends StatefulWidget {
   const SourcesTabs(this.sources, {super.key});
@@ -29,16 +30,17 @@ class _SourcesTabsState extends State<SourcesTabs> {
     return Column(
       children: [
         Padding(
-          padding:EdgeInsetsDirectional.symmetric(vertical: 8,horizontal: 15),
+          padding:EdgeInsetsDirectional.symmetric(vertical: MediaQuery.sizeOf(context).height*0.01,
+              horizontal: MediaQuery.sizeOf(context).width*0.04),
           child: TextField(
             decoration: InputDecoration(
-              hintText: 'Search ...',
+              hintText: AppLocalizations.of(context)!.search,
               suffixIcon: Icon(Icons.search),
            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppTheme.primary),
-    borderRadius: BorderRadius.circular(30)),
+    borderRadius: BorderRadius.circular(MediaQuery.sizeOf(context).height*0.03)),
 
            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppTheme.primary),
-           borderRadius: BorderRadius.circular(30)
+           borderRadius: BorderRadius.circular(MediaQuery.sizeOf(context).height*0.03)
 
            ),
             ),

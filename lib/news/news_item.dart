@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app_route/api_service/news_response_model.dart';
 import 'package:news_app_route/style/app_theme.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewsItem extends StatelessWidget {
   const NewsItem(this.article, {super.key});
@@ -10,47 +11,57 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleSmall = Theme.of(context).textTheme.titleSmall;
+    final Size screenSize = MediaQuery.of(context).size;
+    final double horizontalPadding = screenSize.width * 0.05;
+    final double verticalPadding = screenSize.height * 0.02;
+    final double imageHeight = screenSize.height * 0.25;
+    final double fontSizeSmall = screenSize.width * 0.03;
+    final double fontSizeMedium = screenSize.width * 0.04;
+
+    final TextStyle? titleSmall =
+        Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontSize: fontSizeSmall,
+            );
+
     return Padding(
-      padding: const EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 8),
+      padding: EdgeInsetsDirectional.symmetric(
+          horizontal: horizontalPadding, vertical: verticalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: const BorderRadiusDirectional.all(Radius.circular(5)),
+            borderRadius: BorderRadius.circular(5),
             child: Image.network(
-              article.urlToImage ?? 'https://t3.ftcdn.net/jpg/04/60/01/36/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg',
-              height: MediaQuery.sizeOf(context).height * 0.25,
+              article.urlToImage ??
+                  'https://t3.ftcdn.net/jpg/04/60/01/36/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg',
+              height: imageHeight,
               width: double.infinity,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(
-            height: 4,
-          ),
+          SizedBox(height: verticalPadding / 2),
           Text(
             article.source?.name ?? '',
-            style: titleSmall?.copyWith(color: AppTheme.gray, fontSize: 10),
+            style: titleSmall?.copyWith(
+                color: AppTheme.gray, fontSize: fontSizeSmall),
           ),
-          const SizedBox(
-            height: 4,
-          ),
+          SizedBox(height: verticalPadding / 2),
           GestureDetector(
             onTap: () {
               _showArticleDetails(context);
             },
             child: Text(
               article.title ?? '',
-              style: titleSmall?.copyWith(fontWeight: FontWeight.w500),
+              style: titleSmall?.copyWith(
+                  fontWeight: FontWeight.w500, fontSize: fontSizeMedium),
             ),
           ),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
-              timeago.format(
-                DateTime.now(),
-              ),
-              style: titleSmall?.copyWith(color: AppTheme.gray, fontSize: 13),
+              timeago.format(DateTime.now()),
+              style: titleSmall?.copyWith(
+                  color: AppTheme.gray, fontSize: fontSizeSmall),
             ),
           ),
         ],
@@ -59,64 +70,69 @@ class NewsItem extends StatelessWidget {
   }
 
   void _showArticleDetails(BuildContext context) {
-    showModalBottomSheet(
+    final Size screenSize = MediaQuery.of(context).size;
 
+    showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-
-          height: MediaQuery.of(context).size.height * 0.9,
-          padding: const EdgeInsets.all(16.0),
+          height: screenSize.height * 0.9,
+          padding: EdgeInsets.all(screenSize.width * 0.05),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                borderRadius: BorderRadius.circular(5),
                 child: Image.network(
-                  article.urlToImage ?? 'https://t3.ftcdn.net/jpg/04/60/01/36/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg',
-                  height: 200,
+                  article.urlToImage ??
+                      'https://t3.ftcdn.net/jpg/04/60/01/36/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg',
+                  height: screenSize.height * 0.25,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: screenSize.height * 0.02),
               Text(
-                article.source?.name?? '',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppTheme.gray),
+                article.source?.name ?? '',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(color: AppTheme.gray),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: screenSize.height * 0.01),
               Text(
                 article.title ?? '',
-        style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenSize.width * 0.05),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: screenSize.height * 0.02),
               Text(
                 article.description ?? '',
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: screenSize.height * 0.03),
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'view full Article',
-
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppTheme.black,fontWeight: FontWeight.bold, fontSize: 13),
+                        AppLocalizations.of(context)!.viewFullArticle,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: AppTheme.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: screenSize.width * 0.04),
                       ),
-                      Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_right))
+                      Icon(Icons.arrow_right)
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );
